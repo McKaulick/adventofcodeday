@@ -3,7 +3,35 @@ import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+
 function getTotal(stringValues) {
+
+  // Method using Array;
+  var numArray = [];
+  var total = [];
+
+  for (let i = 0; i < stringValues.length; i++) {
+    for (const char of stringValues[i]) {
+      if (!isNaN(char)) {
+        numArray.push(char);
+      }
+    }
+    if (numArray.length > 1) {
+      total.push(numArray[0] + numArray[numArray.length-1]);
+    }
+    else {
+      total.push(numArray + numArray);
+    }
+    numArray = [];
+  }
+  let sum = 0;
+  for (let i = 0; i < total.length; i++) {
+    sum += Number(total[i]);
+  }
+  return sum;
+
+  // Other method 
+  /*
   var total = "";
   var totalString = "";
   var totalString1 = "";
@@ -35,7 +63,9 @@ function getTotal(stringValues) {
     totalString1 = "";
     totalString2 = "";
   }
-  return "total: "+total; //55,538
+  */
+  
+  //return "total: "+total; //55,538
 }
 
 function App() {
