@@ -33,3 +33,6 @@
   color: #000;
 }
 
+.display-linebreak {
+  white-space: pre-line;
+}
