@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react';
 function getTotal(stringValues) {
 
   // Method using Array;
-  var numArray = [];
-  var total = [];
+  let total = [];
 
   for (let i = 0; i < stringValues.length; i++) {
+    let numArray = [];
     for (const char of stringValues[i]) {
       if (!isNaN(char)) {
         numArray.push(char);
@@ -22,7 +22,6 @@ function getTotal(stringValues) {
     else {
       total.push(numArray + numArray);
     }
-    numArray = [];
   }
   let sum = 0;
   for (let i = 0; i < total.length; i++) {
