@@ -48,6 +48,8 @@ function getTotalDay1Part2(stringValues) {
     nine: "9"
   }
 
+  //stringValues = ["sixdddkcqjdnzzrgfourxjtwosevenhg9"];
+
   for (let i = 0; i < stringValues.length; i++) {
 
     let numArray = [];
@@ -60,25 +62,21 @@ function getTotalDay1Part2(stringValues) {
         numArray[position] = day;
         //console.log(`Found ${day} at position ${position}`);
       }
-      
-      //console.log(numArray);
-      // Clear the null from the array
-      numArray = numArray.filter(element => element !== null);
-      //console.log(numArray);
+    }
+    // Clear the null from the array
+    numArray = numArray.filter(element => element !== null);
+    
+    // Iterate through the array and replace elements with the right values from dayMap
+    for (let i = 0; i < numArray.length; i++) {
+      let currentValue = numArray[i];
 
-      // Iterate through the array and replace elements with the right values from dayMap
-      for (let i = 0; i < numArray.length; i++) {
-        let currentValue = numArray[i];
-
-        // Check if currentValue exists as a key in dayMap
-        if (dayMap[currentValue] !== undefined) {
-            // If it does, replace the element with the corresponding value from dayMap
-            numArray[i] = dayMap[currentValue];
-        }
+      // Check if currentValue exists as a key in dayMap
+      if (dayMap[currentValue] !== undefined) {
+          // If it does, replace the element with the corresponding value from dayMap
+          numArray[i] = dayMap[currentValue];
       }
     }
-    
-    //console.log(numArray);
+    console.log(numArray);
 
     if (numArray.length > 1) {
       total.push(numArray[0] + numArray[numArray.length-1]);
@@ -92,7 +90,7 @@ function getTotalDay1Part2(stringValues) {
   for (let i = 0; i < total.length; i++) {
     sum += Number(total[i]);
   }
-  //console.log(sum);
+  console.log(sum);
   return sum; // 54,875
 }
 
