@@ -2,7 +2,7 @@ import logo from './pluginIcon.png';
 import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-
+import getTotalDay2 from "./day2";
 
 function getTotalDay1Part1(stringValues) {
 
@@ -76,8 +76,6 @@ function getTotalDay1Part2(stringValues) {
           numArray[i] = dayMap[currentValue];
       }
     }
-    console.log(numArray);
-
     if (numArray.length > 1) {
       total.push(numArray[0] + numArray[numArray.length-1]);
     }
@@ -90,10 +88,8 @@ function getTotalDay1Part2(stringValues) {
   for (let i = 0; i < total.length; i++) {
     sum += Number(total[i]);
   }
-  console.log(sum);
   return sum; // 54,875
 }
-
 
 function App() {
 
@@ -111,7 +107,21 @@ function App() {
 
   var txtArray = txtData.split("\n");
 
-   return (
+  //Declare useState
+  const [txtDataDay2, setTxtDataDay2] = useState("En cours de chargement...");
+
+  // Declare useEffect that fetch the data in the text file
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + "/inputday2.txt")
+    .then(r => r.text())
+    .then(text => {
+      setTxtDataDay2(text)
+    });
+  }, [])
+
+  var txtArrayDay2 = txtDataDay2.split("\n");
+
+  return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -142,10 +152,20 @@ function App() {
           </a>&nbsp;:&nbsp;
            {getTotalDay1Part2(txtArray)} 
         </div>
+        <div className="display-linebreak">
+          <a
+            className="App-link"
+            href="https://adventofcode.com/2023/day/2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Day 2: Cube Conundrum
+          </a>&nbsp;:&nbsp;
+           {getTotalDay2(txtArrayDay2)} 
+        </div>
       </div>
     </div>
   );
 }
-
 export default App;
 
